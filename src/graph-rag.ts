@@ -5,7 +5,6 @@ import { Agent } from '@mastra/core/agent';
 import { PgVector } from '@mastra/pg';
 import { MDocument, createGraphRAGTool } from '@mastra/rag';
 import { embedMany } from 'ai';
-import { LibSQLVector } from "@mastra/libsql";
 
 // LM Studioプロバイダーのインスタンスを作成
 const lmstudio = createOpenAICompatible({
@@ -45,10 +44,6 @@ If the context doesn't contain enough information to fully answer the question, 
 });
 
 const pgVector = new PgVector({ connectionString: process.env.POSTGRES_CONNECTION_STRING! });
-const libsqlVector = new LibSQLVector({
-  connectionUrl: ":memory:",
-
-});
 
 export const mastra = new Mastra({
   agents: { ragAgent },
